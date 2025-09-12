@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reusable card + button styles */
+.btn { @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 transition; }
+.btn-outline { @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 text-gray-800 hover:bg-gray-100 transition; }
+.card { @apply rounded-2xl bg-white shadow-sm border border-gray-100; }
+

@@ -1,0 +1,111 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ============================
+# Python
+# ============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+.cache/
+.mypy_cache/
+.pytest_cache/
+coverage/
+*.cover
+*.log
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+.env.*
+*.env
+
+# ============================
+# Node / Frontend
+# ============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+.cache/
+.next/
+out/
+build/
+.vite/
+*.tsbuildinfo
+
+# ============================
+# Editor / OS
+# ============================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ============================
+# Docker / Cloud
+# ============================
+*.pid
+*.seed
+*.pid.lock
+
+# Local Docker artifacts
+docker-compose.override.yml
+*.local.yml
+
+# ============================
+# Project-specific
+# ============================
+# Supabase or Postgres dumps
+*.dump
+*.sql
+
+# Prefect
+prefect.log
+.prefect/
+
+# TypeScript build output
+*.d.ts
+
+# ============================
+# Ignore secrets
+# ============================
+secrets.json
+*.key
+*.pem
+*.crt
+
