@@ -13,7 +13,7 @@ app = FastAPI(title="StudyHub API")
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://startstudying.netlify.app/"
+    "https://startstudying.netlify.app"
     # add deployed frontend URL later, e.g. "https://studyhub.netlify.app"
 ]
 
