@@ -7,7 +7,10 @@ type Note = { id: string; title?: string; content?: string; created_at: string }
 export default function Notes() {
   const [notes, setNotes] = useState<Note[]>([])
   const [title, setTitle] = useState('')
+  const [updatetitle,setUpdatetitle] = useState('')
+  const [updatecontent,setUpdatecontent] = useState('')
   const [content, setContent] = useState('')
+  const [updatewanted, setUpdatewanted] = useState<string>('')
 
   async function load() {
     const data = await apiGet<Note[]>("/notes/")
@@ -27,8 +30,11 @@ export default function Notes() {
     await load()
   }
 
-  async function update(id: string, title?: string, content?: string) {
-    await apiPatch<Note>(`/notes/${id}`, { title, content })
+  async function update(id: string) {
+    await apiPatch<Note>(`/notes/${id}`, {title:updatetitle,content:updatecontent})
+    setUpdatetitle('')
+    setUpdatecontent('')
+    setUpdatewanted('')
     await load()
   }
 
@@ -43,9 +49,9 @@ export default function Notes() {
 
       <Card>
         <form onSubmit={create} className="grid gap-3 md:grid-cols-2">
-          <input className="border rounded-lg px-3 py-2" placeholder="Title" value={title} onChange={e=>setTitle(e.target.value)} />
+          <input className="input" placeholder="Title" value={title} onChange={e=>setTitle(e.target.value)} />
           <div className="md:col-span-2">
-            <textarea className="border rounded-lg px-3 py-2 w-full" rows={4} placeholder="Content" value={content} onChange={e=>setContent(e.target.value)} />
+            <textarea className="textarea w-full" rows={4} placeholder="Content" value={content} onChange={e=>setContent(e.target.value)} />
           </div>
           <div className="md:col-span-2"><button className="btn">Add note</button></div>
         </form>
@@ -60,12 +66,23 @@ export default function Notes() {
                 <div className="text-sm text-gray-600 whitespace-pre-line">{n.content}</div>
               </div>
               <div className="flex gap-2">
-                <button className="btn-outline" onClick={() => update(n.id, (n.title||'') + ' ✏️')}>Edit</button>
+                <button className="btn-outline" onClick={() => {setUpdatewanted(n.id); setUpdatecontent(''); setUpdatetitle('')}}>Edit</button>
                 <button className="btn-outline" onClick={() => remove(n.id)}>Delete</button>
               </div>
             </div>
           </Card>
         ))}
+      </div>
+      <div>
+        {updatewanted && (
+            <Card>
+                <form id = "Noteupdateform" onSubmit={(e)=>{e.preventDefault(); update(updatewanted)}} className="grid gap-2 md:grid-cols-2">
+                    <input className="input" type = 'text' placeholder='Edit note title..' value={updatetitle} onChange={(e)=>{setUpdatetitle(e.target.value)}} />
+                    <input className="input" type = 'text' placeholder='Edit note content..' value={updatecontent} onChange={(e)=>{setUpdatecontent(e.target.value)}} />
+                    <div className="md:col-span-2"><button className="btn" type='submit'>Save changes</button></div>
+                </form>
+            </Card>
+        )}
       </div>
     </div>
   )

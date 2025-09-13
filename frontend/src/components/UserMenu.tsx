@@ -32,7 +32,8 @@ export default function UserMenu() {
 
   async function signOut() {
     await supabase.auth.signOut()
-    window.location.href = '/login'
+    window.location.href = '/login' // Protected has authed state that'll change with changes to session, and it'll redirect to login if not authed. Is there need for this? 
+    
   }
 
   return (

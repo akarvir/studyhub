@@ -95,7 +95,7 @@ export default function Groups() {
                 </div>
                 <div className="flex gap-2">
                   <button onClick={() => acceptInvite(inv.id)} className="btn">Accept</button>
-                  <button onClick={() => declineInvite(inv.id)} className="btn bg-red-500 text-white">Decline</button>
+                  <button onClick={() => declineInvite(inv.id)} className="btn btn-outline">Decline</button>
                 </div>
               </li>
             ))}
@@ -106,18 +106,18 @@ export default function Groups() {
       {/* Create group form */}
       <Card>
         <form onSubmit={createGroup} className="grid gap-3 md:grid-cols-3">
-          <input className="border rounded-lg px-3 py-2" placeholder="Group name" value={name} onChange={e => setName(e.target.value)} />
-          <input className="border rounded-lg px-3 py-2" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
+          <input className="input" placeholder="Group name" value={name} onChange={e => setName(e.target.value)} />
+          <input className="input" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
           <button className="btn">Create group</button>
         </form>
       </Card>
 
       {selected && (
         <Card>
-          <h2 className="font-medium mb-2">Invite Member</h2>
+          <h2 className="font-medium mb-2">Invite a Friend</h2>
           <form onSubmit={inviteMember} className="grid gap-3 md:grid-cols-3">
-            <input className="border rounded-lg px-3 py-2 md:col-span-2" placeholder="User email" value={inviteEmail} onChange={e => setInviteEmail(e.target.value)} />
-            <select className="border rounded-lg px-3 py-2" value={inviteRole} onChange={e => setInviteRole(e.target.value as 'member' | 'owner')}>
+            <input className="input md:col-span-2" placeholder="User email" value={inviteEmail} onChange={e => setInviteEmail(e.target.value)} />
+            <select className="select" value={inviteRole} onChange={e => setInviteRole(e.target.value as 'member' | 'owner')}>
               <option value="member">Member</option>
               <option value="owner">Owner</option>
             </select>
@@ -149,7 +149,7 @@ export default function Groups() {
               <Card>
                 <h2 className="font-medium mb-2">Group Feed</h2>
                 <form onSubmit={createPost} className="flex gap-2">
-                  <input className="border flex-1 rounded-lg px-3 py-2" placeholder="Write a post..." value={newPost} onChange={e => setNewPost(e.target.value)} />
+                  <input className="input flex-1" placeholder="Write a post..." value={newPost} onChange={e => setNewPost(e.target.value)} />
                   <button className="btn">Post</button>
                 </form>
               </Card>
@@ -167,19 +167,24 @@ export default function Groups() {
               </Card>
 
               <Card>
-                <h2 className="font-medium mb-2">Leaderboard</h2>
-                <table className="w-full text-sm">
+                <h2 className="font-medium mb-2">Comments Leaderboard</h2>
+                <table className="table">
                   <thead>
-                    <tr className="text-left border-b">
-                      <th className="py-1 px-2">User</th>
-                      <th className="py-1 px-2">Posts</th>
+                    <tr className="border-b">
+                      <th>User</th>
+                      <th>Posts</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {scoreboard.map(s => (
-                      <tr key={s.user_id} className="border-b">
-                        <td className="py-1 px-2">{s.username || s.user_id.slice(0, 6)}</td>
-                        <td className="py-1 px-2">{s.post_count}</td>
+                    {scoreboard.map((s, idx) => (
+                      <tr key={s.user_id} className="table-row">
+                        <td>
+                          <div className="flex items-center gap-2">
+                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-lg bg-gray-100 text-gray-700 text-xs">{idx+1}</span>
+                            <span>{s.username || s.user_id.slice(0, 6)}</span>
+                          </div>
+                        </td>
+                        <td>{s.post_count}</td>
                       </tr>
                     ))}
                     {!scoreboard.length && (

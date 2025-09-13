@@ -72,7 +72,7 @@ async def invite_user_to_group(group_id: UUID, payload: InviteCreate, session: A
     q2 = await session.execute(select(Profile).where(Profile.email == payload.email))
     invitee = q2.scalar_one_or_none()
     if not invitee:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail="User not found on Studyhub!")
 
     # Create pending invite
     invite = GroupInvite(group_id=group_id, inviter_id=user.id, invitee_id=invitee.id, status="pending")

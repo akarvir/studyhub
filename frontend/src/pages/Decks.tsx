@@ -98,8 +98,8 @@ export default function Decks() {
   
       <Card>
         <form onSubmit={createDeck} className="grid gap-3 md:grid-cols-3">
-          <input className="border rounded-lg px-3 py-2" placeholder="Deck title" value={title} onChange={e=>setTitle(e.target.value)} />
-          <input className="border rounded-lg px-3 py-2" placeholder="Description" value={description} onChange={e=>setDescription(e.target.value)} />
+          <input className="input" placeholder="Deck title" value={title} onChange={e=>setTitle(e.target.value)} />
+          <input className="input" placeholder="Description" value={description} onChange={e=>setDescription(e.target.value)} />
           <button className="btn">Create deck</button>
         </form>
       </Card>
@@ -132,12 +132,15 @@ export default function Decks() {
           <ul className="space-y-2">
             {decks.map(d => (
               <li key={d.id}>
-                <button onClick={()=>setSelected(d.id)}
-                  className={`w-full text-left px-3 py-2 rounded-lg border ${selected===d.id? 'border-brand-500 bg-brand-50' : 'border-gray-200 hover:bg-gray-50'}`}>
-                  <div className="font-medium">{d.title}</div>
-                  {d.description && <div className="text-sm text-gray-600">{d.description}</div>}
-                  <Link to={`/study/${d.id}`} className="text-sm text-gray-600">Study</Link>
-                </button>
+                <div className={`card-hover w-full px-3 py-2 rounded-lg border ${selected===d.id? 'border-brand-500 bg-brand-50' : 'border-gray-200 hover:bg-gray-50'}`}>
+                  <div className="flex items-start justify-between gap-3">
+                    <button onClick={()=>setSelected(d.id)} className="text-left flex-1">
+                      <div className="font-medium">{d.title}</div>
+                      {d.description && <div className="text-sm text-gray-600">{d.description}</div>}
+                    </button>
+                    <Link to={`/study/${d.id}`} className="btn btn-sm">Study Mode</Link>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
@@ -147,8 +150,8 @@ export default function Decks() {
         <Card>
           <h2 className="font-medium mb-2">Add Card to Selected Deck</h2>
           <form onSubmit={addCard} className="grid gap-3">
-            <input className="border rounded-lg px-3 py-2" placeholder="Front" value={front} onChange={e=>setFront(e.target.value)} />
-            <input className="border rounded-lg px-3 py-2" placeholder="Back" value={back} onChange={e=>setBack(e.target.value)} />
+            <input className="input" placeholder="Front" value={front} onChange={e=>setFront(e.target.value)} />
+            <input className="input" placeholder="Back" value={back} onChange={e=>setBack(e.target.value)} />
             <button className="btn">Add card</button>
           </form>
   
@@ -182,14 +185,14 @@ export default function Decks() {
               alert('Invitation sent to ' + inviteEmail.trim())
             }} className="grid gap-3">
               <input
-                className="border rounded-lg px-3 py-2"
+                className="input"
                 placeholder="User Email"
                 type="email"
                 value={inviteEmail}
                 onChange={e => setInviteEmail(e.target.value)}
               />
               <select
-                className="border rounded-lg px-3 py-2"
+                className="select"
                 value={permission}
                 onChange={e => setPermission(e.target.value as 'view' | 'edit')}
               >

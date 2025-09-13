@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Protected from '@/components/Protected'
 import Nav from '@/components/Nav'
+import CommandPalette from '@/components/CommandPalette'
 import Login from '@/pages/Login'
-import Dashboard from '@/pages/Dashboard'c
+import Dashboard from '@/pages/Dashboard'
 import Notes from '@/pages/Notes'
 import Decks from '@/pages/Decks'
 import Groups from '@/pages/Groups'
@@ -27,6 +28,7 @@ function WithNav({ children }: { children: JSX.Element }) {
     <div className="min-h-screen">
       <Nav />
       <main>{children}</main>
+      <CommandPalette />
     </div>
   )
 }

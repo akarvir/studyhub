@@ -4,16 +4,16 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          50: '#eefdf5',
-          100: '#d8f9e6',
-          200: '#b2f1cd',
-          300: '#80e2ad',
-          400: '#4bcd8c',
-          500: '#22c55e',
-          600: '#16a34a',   // 👈 used in .btn
-          700: '#15803d',   // 👈 used in .btn hover
-          800: '#166534',
-          900: '#14532d',
+          50: '#f5f3ff',    // nebula glow
+          100: '#ede9fe',
+          200: '#ddd6fe',
+          300: '#c4b5fd',
+          400: '#a78bfa',
+          500: '#8b5cf6',   // main galaxy purple
+          600: '#7c3aed',   // 👈 used in .btn
+          700: '#6d28d9',   // 👈 used in .btn hover
+          800: '#5b21b6',
+          900: '#4c1d95',
         },
       },
     },

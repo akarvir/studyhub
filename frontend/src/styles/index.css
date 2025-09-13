@@ -3,7 +3,19 @@
 @tailwind utilities;
 
 /* Reusable card + button styles */
-.btn { @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 transition; }
+.btn { @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-sm hover:shadow md:active:scale-[.98] transition; }
 .btn-outline { @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 text-gray-800 hover:bg-gray-100 transition; }
+.btn-sm { @apply px-3 py-1.5 text-sm rounded-lg; }
+.btn-ghost { @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100; }
+.input { @apply border border-gray-300 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-400 transition bg-white; }
+.select { @apply border border-gray-300 rounded-xl px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-400; }
+.textarea { @apply border border-gray-300 rounded-xl px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-400; }
 .card { @apply rounded-2xl bg-white shadow-sm border border-gray-100; }
+.card-hover { @apply transition hover:shadow-md; }
+.badge { @apply inline-flex items-center text-xs font-medium px-2 py-0.5 rounded-full bg-brand-50 text-brand-700 border border-brand-200; }
+.kpi { @apply card p-4 flex items-start justify-between; }
+.table { @apply w-full text-sm; }
+.table thead th { @apply text-left text-gray-600 font-medium px-3 py-2; }
+.table tbody td { @apply px-3 py-2; }
+.table-row { @apply border-b hover:bg-gray-50; }
 
