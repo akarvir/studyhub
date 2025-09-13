@@ -12,3 +12,4 @@ AsyncSessionLocal = sessionmaker(bind=engine, expire_on_commit=False, class_=Asy
 async def get_session() -> AsyncSession:
     async with AsyncSessionLocal() as session:
         yield session
+# automatically closes session when function ends. 

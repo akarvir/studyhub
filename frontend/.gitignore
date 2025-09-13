@@ -41,7 +41,7 @@ build/
 coverage/
 *.cover
 *.log
-
+.env
 # Virtual environments
 .venv/
 venv/

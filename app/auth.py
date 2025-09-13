@@ -23,7 +23,7 @@ async def verify_supabase_jwt(token: str) -> dict:
 
 async def ensure_profile(session: AsyncSession, auth_user: dict) -> Profile:
     user_id = UUID(auth_user["id"])  # Supabase auth.users.id
-    result = await session.execute(select(Profile).where(Profile.id == user_id))
+    result = await session.execute(select(Profile).where(Profile.id == user_id)) # can return tuple(Profile, something), we just want the profile. The first column. 
     profile = result.scalar_one_or_none()
     if profile:
         return profile
@@ -45,3 +45,7 @@ async def get_current_profile(
     auth_user = await verify_supabase_jwt(creds.credentials)
     profile = await ensure_profile(session, auth_user)
     return profile
+
+
+
+# frontend and backend both have access to same supabase project url 

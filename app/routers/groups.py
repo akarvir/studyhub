@@ -43,7 +43,7 @@ async def create_group(payload: GroupCreate, session: AsyncSession = Depends(get
 async def add_member(group_id: UUID, payload: GroupMemberCreate, session: AsyncSession = Depends(get_session), user=Depends(get_current_profile)):
     q = await session.execute(select(Group).where(Group.id == group_id))
     group = q.scalar_one_or_none()
-    if not group or group.owner_id != user.id:
+    if not group or group.owner_id != user.id: # if not owner of group, can't add members. 
         raise HTTPException(status_code=404, detail="Group not found or not yours")
 
     existing_q = await session.execute(
@@ -94,14 +94,14 @@ async def list_group_invites(session: AsyncSession = Depends(get_session), user=
 async def accept_invite(invite_id: UUID, session: AsyncSession = Depends(get_session), user=Depends(get_current_profile)):
     q = await session.execute(
         select(GroupInvite).where(GroupInvite.id == invite_id, GroupInvite.invitee_id == user.id)
-    )
+    ) # why not further filter for pending invities here?
     invite = q.scalar_one_or_none()
-    if not invite or invite.status != "pending":
+    if not invite or invite.status != "pending": # oh okay, that filtering is done here. but it won't show in the first place in list of invites. my bad.
         raise HTTPException(status_code=404, detail="Invite not found")
 
     invite.status = "accepted"
     session.add(GroupMember(group_id=invite.group_id, user_id=user.id,role="member"))  # add to group
-    await session.commit()
+    await session.commit() # the invite.status update of 'accept' happens in db when this is done. 
     return {"ok": True}
 
 

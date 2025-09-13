@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Protected from '@/components/Protected'
 import Nav from '@/components/Nav'
 import Login from '@/pages/Login'
-import Dashboard from '@/pages/Dashboard'
+import Dashboard from '@/pages/Dashboard'c
 import Notes from '@/pages/Notes'
 import Decks from '@/pages/Decks'
 import Groups from '@/pages/Groups'

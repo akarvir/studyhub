@@ -15,7 +15,7 @@ class Profile(Base):
     username = Column(String(50), unique=True, nullable=False)
     avatar_url = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
-    email = Column(String, unique=True, index=True, nullable=False)
+    email = Column(String, unique=True, index=True, nullable=False) # can't be null. 
 
     # Relationships
     notes = relationship("Note", back_populates="user", cascade="all, delete-orphan")

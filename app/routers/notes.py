@@ -22,7 +22,7 @@ async def create_note(payload: NoteCreate, session: AsyncSession = Depends(get_s
     note = Note(user_id=user.id, title=payload.title, content=payload.content)
     session.add(note)
     await session.commit()
-    await session.refresh(note)
+    await session.refresh(note) # db adds attributes such as created_at, we want that included. 
     return note
 
 @router.get("/{note_id}", response_model=NoteOut)

@@ -18,7 +18,7 @@ router = APIRouter(prefix="/decks", tags=["decks"])
 async def list_decks(session: AsyncSession = Depends(get_session), user=Depends(get_current_profile)):
      owned = select(FlashcardDeck).where(FlashcardDeck.owner_id == user.id)
      shared = (
-        select(FlashcardDeck)
+        select(FlashcardDeck) # no difference to groups, same thing with association table. get the flashcard decks, for who in the association table
         .join(DeckShare, DeckShare.deck_id == FlashcardDeck.id)
         .where(DeckShare.user_id == user.id)
     )
@@ -30,7 +30,7 @@ async def list_decks(session: AsyncSession = Depends(get_session), user=Depends(
 async def create_deck(payload: DeckCreate, session: AsyncSession = Depends(get_session), user=Depends(get_current_profile)):
     deck = FlashcardDeck(owner_id=user.id, title=payload.title, description=payload.description)
     session.add(deck)
-    await session.commit()
+    await session.commit() # commit() when new changes that need to persist to the db. 
     await session.refresh(deck)
     return deck
 
@@ -48,7 +48,7 @@ async def list_cards(deck_id: UUID, session: AsyncSession = Depends(get_session)
         )
         share = share_q.scalar_one_or_none()
         if not share:
-            raise HTTPException(status_code=403, detail="Not allowed")
+            raise HTTPException(status_code=403, detail="Not allowed") # user somehow got their hands on deckid, but does not have access to it. 
     # List cards
     cards_q = await session.execute(
         select(Flashcard).where(Flashcard.deck_id == deck_id).order_by(Flashcard.created_at.desc())
