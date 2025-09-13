@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Navigate } from 'react-router-dom'
 
-export default function Protected({ children }: { children: JSX.Element }) {
+export default function Protected({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true)
   const [authed, setAuthed] = useState(false)
 

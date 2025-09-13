@@ -23,7 +23,7 @@ export default function App() {
   )
 }
 
-function WithNav({ children }: { children: JSX.Element }) {
+function WithNav({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen">
       <Nav />
