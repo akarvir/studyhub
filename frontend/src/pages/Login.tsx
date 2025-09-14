@@ -23,7 +23,9 @@ export default function Login() {
     const { error } = await supabase.auth.signUp({ email, password })
     setLoading(false)
     if (error) setError(error.message)
-    else alert('Check your email to confirm your account!')
+    else {
+      alert('Please check your email to verify your account')
+    }
   }
 
   return (
