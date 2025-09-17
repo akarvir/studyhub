@@ -1,1 +1,1 @@
-As midterms loom over my head, I decided to make this study platform where you can make notes and flashcards, test yourself on them, and share them with your friends. Start studying now at - https://studyhub-219.pages.dev
+As midterms loom over my head, I decided to make this study platform where you can make notes and flashcards, test yourself on them, share them with your friends, and make discussion groups. Start studying now at - https://studyhub-219.pages.dev
